@@ -39,3 +39,4 @@ write(merged_df)
   - Logging
   - Data validation
   - Exceptions handling
+- Add scrape from company URL when available to add to the final dataset.
