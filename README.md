@@ -20,3 +20,7 @@ write(merged_df)
 - "Equivalent" of Scala datasets (Pydantic classes?), giving schemas to each dataset and its' transformed output
   - This will allow to unit test everything more effectively if data mocks are set up and easily available.
 - Config or argparser for paths, URLs etc.
+- Hygiene
+  - Logging
+  - Data validation
+  - Exceptions handling
