@@ -19,4 +19,9 @@ def restructure_test_funding(test_funding_raw):
     return df
 
 def rename_divestments(divestments):
+    """
+    Renames entry, exit and funds to previous_*, where * in [entry, exit, funds]
+    :param divestments: pandas df of divestments
+    :return: divestments, but with renamed columns
+    """
     return divestments.rename(columns={"entry": "previous_entry", "exit": "previous_exit", "funds": "previous_funds"})

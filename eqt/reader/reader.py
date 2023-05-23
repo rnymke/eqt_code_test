@@ -3,15 +3,30 @@ from reader.utils.utils import url_to_soup
 
 
 def read_funds(url):
-    return _funds_to_pdf_df(url_to_soup(url))
+    """
+    Read funds from url and returns funds pdf
+    :param url: url to EQT funds site
+    :return: pandas df of funds
+    """
+    return _funds_to_pdf(url_to_soup(url))
 
 def read_portfolio(url):
+    """
+    Read portfolio from url and returns portfolio pdf
+    :param url: url to EQT portfolio site
+    :return: pandas df of portfolio
+    """
     return _div_or_port_to_pdf(url_to_soup(url))
 
 def read_divestments(url):
+    """
+    Read divestments from url and returns divestments pdf
+    :param url: url to EQT divestments site
+    :return: pandas df of divestments
+    """
     return _div_or_port_to_pdf(url_to_soup(url))
 
-def _funds_to_pdf_df(funds_soup):
+def _funds_to_pdf(funds_soup):
     fund_list = []
     for fund in funds_soup:
         fund_name = fund.find('span', {'class': 'inline-block'}).get_text()
