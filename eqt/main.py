@@ -1,6 +1,7 @@
 import pandas as pd
 from pathlib import Path
 from reader.reader import read_funds, read_portfolio, read_divestments
+from writer.writer import write_local
 from transformer.transformer import restructure_test_funding, rename_divestments
 
 ### TODO: Should be in config and/or argparser
@@ -13,6 +14,8 @@ divestments_url = "https://eqtgroup.com/current-portfolio/divestments/"
 base_data_path = Path(__file__).parent.parent
 interview_test_funding_path = base_data_path / "data/interview-test-funding.json.gz"
 interview_test_org_path = base_data_path / "data/interview-test-org.json.gz"
+
+output_path = "./merged.json"
 
 
 
@@ -40,3 +43,5 @@ if __name__ == '__main__':
     external_merged = external_merged.rename(columns={"company_name": "company"})
 
     merged = internal_merged.merge(external_merged, on="company", how="left")
+
+    write_local(merged, output_path)

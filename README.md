@@ -17,8 +17,23 @@ merged_df = merge(dfs)
 
 write(merged_df)
 ```
+alt.
+```python
+funds = ...
+portfs = ...
+# etc
+
+funds_transformed = transform(funds)
+portfs_transformed = transform(portfs)
+# etc
+
+merged_df = merge_sources(funds_transformed, portfs_transformed, ...)
+
+write(merged_df)
+```
+
 - "Equivalent" of Scala datasets (Pydantic classes?), giving schemas to each dataset and its' transformed output
-  - This will allow to unit test everything more effectively if data mocks are set up and easily available.
+  - This will allow to test everything more effectively if data mocks are set up and easily available.
 - Config or argparser for paths, URLs etc.
 - Hygiene
   - Logging
