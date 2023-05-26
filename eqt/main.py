@@ -15,7 +15,7 @@ base_data_path = Path(__file__).parent.parent
 interview_test_funding_path = base_data_path / "data/interview-test-funding.json.gz"
 interview_test_org_path = base_data_path / "data/interview-test-org.json.gz"
 
-output_path = "./merged.json"
+output_path = "./merged2.json"
 
 
 
@@ -34,10 +34,13 @@ if __name__ == '__main__':
     # Restructure test_funding, grouping each funding run and collecting it in a list for each company
     test_funding_restructured = restructure_test_funding(test_funding_raw)
     renamed_divestments = rename_divestments(divestments)
+    # TODO: transform funds into [fund_name, {launch: xxx, size: xxx, etc}
 
     ## Merge dataframes
     internal_merged = portfolios.merge(renamed_divestments[["company", "previous_funds", "previous_entry", "previous_exit"]],
                             on='company', how="outer")
+    # TODO: merge funds (explode on "funds" after splitting comma, join funds as json blobs, collect), equivalent to how external funding is structured
+    # to get {}
 
     external_merged = test_org_raw.merge(test_funding_restructured, on="company_name", how="left")
     external_merged = external_merged.rename(columns={"company_name": "company"})
